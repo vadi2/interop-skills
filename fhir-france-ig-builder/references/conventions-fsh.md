@@ -32,7 +32,7 @@ Tous les alias FSH doivent être centralisés dans un **unique fichier `aliases.
 - Le binding principal (extensible ou required selon le cas) va dans le binding par défaut de l'élément.
 - Les bindings additionnels (`additional binding`) sont réservés aux ValueSets alternatifs — ne pas les utiliser comme binding par défaut.
 - Choisir la force selon ce que les émetteurs peuvent réellement fournir : `required` uniquement pour une liste fermée que tous les émetteurs peuvent utiliser. La renforcer après publication est un changement incompatible (`references/changements-incompatibles.md`).
-- Avant de créer un CodeSystem ou un code local, chercher dans les terminologies internationales (SNOMED CT, LOINC...) et les terminologies françaises existantes, et garder trace de la recherche.
+- Avant de créer un CodeSystem ou un code local, chercher dans les terminologies internationales (SNOMED CT, LOINC...) et les terminologies françaises existantes.
 - Un ValueSet ou un CodeSystem utilisé par aucun binding, ValueSet ou ConceptMap est inutile : le lier ou le supprimer.
 - Conventions de nommage des terminologies elles-mêmes (`TRE_`, `JDV_`, `ASS_`) et serveurs de référence (SMT, IG Terminologies) : voir `fhir-france-implementer/references/terminologies.md` — ne pas dupliquer ces conventions ici, ce skill ne couvre que la rédaction FSH.
 

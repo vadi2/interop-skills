@@ -21,7 +21,7 @@ A change is breaking if an instance, query or dependent IG that was valid agains
 | Profile, extension, ValueSet or CodeSystem renamed, merged, split or removed (`Id`, canonical) | Every `meta.profile`, `Coding.system`, binding and dependent IG pointing at the old canonical stops resolving | Can the canonical stay and only the title and description change? Was the scope (a use case, a team) written into the `Id`, forcing a rename later? |
 | Existing code reused with a new meaning, or renumbered | Stored data silently changes meaning | Add a new code and retire the old one (`status`/`inactive`) instead |
 | Display of a published code changed | The validator flags the old display as wrong, so senders that copied it start failing | Is it a real error? Fix through a designation, or a new code, rather than rewriting the display |
-| Local code later replaced by an international one (SNOMED CT, LOINC...) | Every sender switches system and code | When the code is **added**: search the international terminologies first and record the search |
+| Local code later replaced by an international one (SNOMED CT, LOINC...) | Every sender switches system and code | When the code is **added**: search the international terminologies first |
 | Binding strength tightened, or bound to a different ValueSet | Production instances become invalid | Would an additional binding, or a wider ValueSet, do? |
 | Cardinality or Must Support tightened | Senders that never filled the element start failing | Does every system that sends this resource actually have the data? |
 | Reference target narrowed (`Reference(Patient)` -> `Reference(MyPatientProfile)`) | Instances pointing at other profiles fail | Announce it a version ahead |
