@@ -37,6 +37,12 @@ Full details, naming conventions by artifact type, and authoritative source: `re
 - `TRE_`/`JDV_`/`ASS_` terminology naming conventions: see `fhir-france-implementer-en/references/terminologies.md` (not duplicated here).
 - **After any change to a `.fsh` file or `sushi-config.yaml`, run `sushi .` and fix all errors before committing or pushing.**
 
+Modelling mistakes that pass the build - restating the base, binding strength, references, examples, documentation, `ignoreWarnings.txt`: `references/qualite-modelisation.md`.
+
+- Constrain references to the FR Core or ANS profile of the target where one exists, not to the base resource.
+- Every profile has an example that a clinician would recognise, with `meta.profile`.
+- Never edit the publisher scripts (`_genonce.*`, `_updatePublisher.*`), and justify every line added to `ignoreWarnings.txt`.
+
 ## 3. Git/GitHub workflow
 
 Full details and the exact ANS PR template: `references/workflow-git-github.md`.
