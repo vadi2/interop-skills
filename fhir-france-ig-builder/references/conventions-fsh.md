@@ -39,7 +39,7 @@ Tous les alias FSH doivent être centralisés dans un **unique fichier `aliases.
 ## Cohérence avec `sushi-config.yaml`
 
 - Les URLs canoniques utilisées dans les fichiers FSH doivent correspondre à la valeur `canonical` de `sushi-config.yaml`.
-- Ne pas écrire `^url` à la main sur un artefact : SUSHI le déduit de `canonical` et de l'`Id`, et une valeur écrite à la main diverge dès que l'un des deux change.
+- Ne pas écrire `^url` à la main sur un Profile, une Extension ou un modèle Logical : SUSHI le déduit de `canonical` et de l'`Id`, et une valeur écrite à la main diverge dès que l'un des deux change. Ne renseigner `^url` que pour un artefact qui relève délibérément d'un autre canonical, comme une terminologie publiée sur un serveur de terminologies.
 - Le `publisher` déclaré dans les `CapabilityStatement` doit correspondre au `publisher` de `sushi-config.yaml`.
 
 ## Obligation de build
@@ -52,7 +52,7 @@ Tous les alias FSH doivent être centralisés dans un **unique fichier `aliases.
 - [ ] Nommage (nom FSH, `Id`, suffixe de fichier) conforme au tableau ci-dessus pour chaque artefact.
 - [ ] Tous les alias sont dans `aliases.fsh`, aucun ailleurs.
 - [ ] Pas de placeholder résiduel (`xxx`, `TODO`, `TBD`, `FIXME`, `à compléter`, `<insérer`, `placeholder`).
-- [ ] Aucun `^url` écrit à la main.
+- [ ] Aucun `^url` écrit à la main, sauf pour les artefacts qui relèvent délibérément d'un autre canonical.
 - [ ] Chaque nouveau ValueSet et CodeSystem est utilisé par un binding, un ValueSet ou un ConceptMap.
 - [ ] Chaque modification d'un artefact déjà publié a été vérifiée avec `references/changements-incompatibles.md`.
 - [ ] `sushi .` s'exécute sans erreur.
