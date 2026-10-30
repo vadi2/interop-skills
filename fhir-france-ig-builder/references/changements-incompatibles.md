@@ -39,6 +39,26 @@ Un changement est incompatible si une instance, une requête ou un IG dépendant
 
 ## Vérification
 
-- [ ] Chaque artefact modifié a été comparé avec le dernier tag publié, pas avec `main`.
-- [ ] Aucun code réutilisé avec un nouveau sens, aucun display de code publié modifié sans nouveau code.
-- [ ] Chaque changement incompatible a vu son alternative compatible écartée, et a une entrée **Changements incompatibles** dans `change-log.md`.
+Partir des lignes que la branche supprime ou réécrit depuis le dernier tag publié - la plupart des changements incompatibles s'y trouvent :
+
+```bash
+git diff "$tag"...HEAD -- input/fsh sushi-config.yaml | grep '^-[^-]'
+```
+
+Par rapport au dernier tag publié, la branche :
+
+- [ ] Ne renomme ni ne supprime aucun `Id`, canonical ou `id` de package, et ne modifie `version` que pour l'incrément prévu.
+- [ ] Ne supprime, ne renumérote ni ne réutilise avec un nouveau sens aucun code publié ; un code remplacé est retiré (`status`/`inactive`), pas supprimé.
+- [ ] Ne modifie le display d'aucun code publié.
+- [ ] Ne renforce aucune force de binding et ne fait pointer aucun binding publié vers un autre ValueSet.
+- [ ] N'augmente aucune cardinalité minimale, ne réduit aucune maximale, n'ajoute aucun Must Support sur un élément publié.
+- [ ] Ne restreint aucune cible de référence.
+- [ ] Ne déplace aucun élément et ne change aucun type de données.
+- [ ] Signale dans `change-log.md` tout assouplissement que les récepteurs doivent désormais gérer (nouveaux codes, cardinalité ou binding élargis).
+
+Pour chaque changement incompatible maintenu :
+
+- [ ] La PR indique quelle alternative compatible a été envisagée et pourquoi elle ne convient pas.
+- [ ] Le remplaçant est accepté pendant au moins une version avant la suppression de l'original, ou la PR explique pourquoi ce n'est pas possible.
+- [ ] `change-log.md` a une entrée **Changements incompatibles** qui dit ce que les implémenteurs doivent changer, avec une table ancien -> nouveau.
+- [ ] Les IGs dépendants ont été parcourus pour y chercher l'artefact, et ceux qui l'utilisent sont mis à jour dans le même cycle de release.

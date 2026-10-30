@@ -39,6 +39,26 @@ A change is breaking if an instance, query or dependent IG that was valid agains
 
 ## Verification
 
-- [ ] Every changed artifact was compared against the latest published tag, not `main`.
-- [ ] No code reused with a new meaning, no display of a published code changed without a new code.
-- [ ] Every breaking change has a non-breaking alternative ruled out, and a **Breaking changes** entry in `change-log.md`.
+Start from the lines the branch removes or rewrites since the latest published tag - most breaking changes show up there:
+
+```bash
+git diff "$tag"...HEAD -- input/fsh sushi-config.yaml | grep '^-[^-]'
+```
+
+Compared with the latest published tag, the branch:
+
+- [ ] Renames or removes no `Id`, canonical or package `id`, and changes `version` only for the planned bump.
+- [ ] Removes, renumbers or reuses with a new meaning no published code; a code being replaced is retired (`status`/`inactive`), not deleted.
+- [ ] Changes no display of a published code.
+- [ ] Raises no binding strength and points no published binding at a different ValueSet.
+- [ ] Raises no minimum cardinality, lowers no maximum, adds no Must Support on a published element.
+- [ ] Narrows no reference target.
+- [ ] Moves no element and changes no datatype.
+- [ ] Lists in `change-log.md` any loosening that receivers must now handle (new codes, wider cardinality or binding).
+
+For each breaking change that stays:
+
+- [ ] The PR says which non-breaking alternative was considered and why it does not work.
+- [ ] The replacement is accepted for at least one version before the original is removed, or the PR says why not.
+- [ ] `change-log.md` has a **Breaking changes** entry saying what implementers must change, with an old-to-new table.
+- [ ] Dependent IGs were searched for the artifact, and those that use it are updated in the same release cycle.
