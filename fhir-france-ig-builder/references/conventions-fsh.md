@@ -31,11 +31,15 @@ Tous les alias FSH doivent être centralisés dans un **unique fichier `aliases.
 
 - Le binding principal (extensible ou required selon le cas) va dans le binding par défaut de l'élément.
 - Les bindings additionnels (`additional binding`) sont réservés aux ValueSets alternatifs — ne pas les utiliser comme binding par défaut.
+- Choisir la force selon ce que les émetteurs peuvent réellement fournir : `required` uniquement pour une liste fermée que tous les émetteurs peuvent utiliser. La renforcer après publication est un changement incompatible (`references/changements-incompatibles.md`).
+- Avant de créer un CodeSystem ou un code local, chercher dans les terminologies internationales (SNOMED CT, LOINC...) et les terminologies françaises existantes, et garder trace de la recherche.
+- Un ValueSet ou un CodeSystem utilisé par aucun binding, ValueSet ou ConceptMap est inutile : le lier ou le supprimer.
 - Conventions de nommage des terminologies elles-mêmes (`TRE_`, `JDV_`, `ASS_`) et serveurs de référence (SMT, IG Terminologies) : voir `fhir-france-implementer/references/terminologies.md` — ne pas dupliquer ces conventions ici, ce skill ne couvre que la rédaction FSH.
 
 ## Cohérence avec `sushi-config.yaml`
 
 - Les URLs canoniques utilisées dans les fichiers FSH doivent correspondre à la valeur `canonical` de `sushi-config.yaml`.
+- Ne pas écrire `^url` à la main sur un artefact : SUSHI le déduit de `canonical` et de l'`Id`, et une valeur écrite à la main diverge dès que l'un des deux change.
 - Le `publisher` déclaré dans les `CapabilityStatement` doit correspondre au `publisher` de `sushi-config.yaml`.
 
 ## Obligation de build
@@ -48,4 +52,7 @@ Tous les alias FSH doivent être centralisés dans un **unique fichier `aliases.
 - [ ] Nommage (nom FSH, `Id`, suffixe de fichier) conforme au tableau ci-dessus pour chaque artefact.
 - [ ] Tous les alias sont dans `aliases.fsh`, aucun ailleurs.
 - [ ] Pas de placeholder résiduel (`xxx`, `TODO`, `TBD`, `FIXME`, `à compléter`, `<insérer`, `placeholder`).
+- [ ] Aucun `^url` écrit à la main.
+- [ ] Chaque nouveau ValueSet et CodeSystem est utilisé par un binding, un ValueSet ou un ConceptMap.
+- [ ] Chaque modification d'un artefact déjà publié a été vérifiée avec `references/changements-incompatibles.md`.
 - [ ] `sushi .` s'exécute sans erreur.

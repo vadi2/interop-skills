@@ -31,11 +31,15 @@ All FSH aliases must be centralized in a **single `aliases.fsh` file** — do no
 
 - The main binding (extensible or required depending on the case) goes in the element's default binding.
 - Additional bindings (`additional binding`) are reserved for alternative ValueSets — do not use them as the default binding.
+- Choose the strength for what senders can actually provide: `required` only for a closed list that every sender can use. Tightening it after publication is a breaking change (`references/changements-incompatibles.md`).
+- Before creating a local CodeSystem or code, search the international terminologies (SNOMED CT, LOINC...) and the existing French terminologies, and keep a trace of the search.
+- A ValueSet or CodeSystem that no binding, ValueSet or ConceptMap uses is dead weight: bind it or remove it.
 - Naming conventions for the terminologies themselves (`TRE_`, `JDV_`, `ASS_`) and reference servers (SMT, IG Terminologies): see `fhir-france-implementer-en/references/terminologies.md` — do not duplicate these conventions here, this skill only covers FSH writing.
 
 ## Consistency with `sushi-config.yaml`
 
 - Canonical URLs used in FSH files must match the `canonical` value of `sushi-config.yaml`.
+- Do not hand-write `^url` on an artifact: SUSHI derives it from `canonical` and the `Id`, and a hand-written one drifts when either changes.
 - The `publisher` declared in `CapabilityStatement` resources must match the `publisher` of `sushi-config.yaml`.
 
 ## Build requirement
@@ -48,4 +52,7 @@ All FSH aliases must be centralized in a **single `aliases.fsh` file** — do no
 - [ ] Naming (FSH name, `Id`, filename suffix) conforms to the table above for every artifact.
 - [ ] All aliases are in `aliases.fsh`, none elsewhere.
 - [ ] No residual placeholder (`xxx`, `TODO`, `TBD`, `FIXME`, `à compléter`, `<insert`, `placeholder`).
+- [ ] No hand-written `^url`.
+- [ ] Every new ValueSet and CodeSystem is used by a binding, a ValueSet or a ConceptMap.
+- [ ] Every change to an artifact already published was checked against `references/changements-incompatibles.md`.
 - [ ] `sushi .` runs without error.

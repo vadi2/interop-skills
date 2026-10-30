@@ -5,7 +5,7 @@ description: "Guides authors/editors of French FHIR Implementation Guides (IG) t
 
 # Writing and publishing a French FHIR IG
 
-> **Content last updated: 2026-10-13**
+> **Content last updated: 2026-10-30**
 > This landscape evolves (new versions of the skeleton repos, publisher/SUSHI updates, ANS best practices). Systematically check whether newer versions of the points below exist before answering with certainty.
 
 **Synchronized French twin**: `fhir-france-ig-builder/SKILL.md` is the reference version. Any content update here must be mirrored there (and vice versa).
@@ -32,6 +32,7 @@ Full details, naming conventions by artifact type, and authoritative source: `re
 - FSH comments: `//`, never `#`.
 - Before creating a new `Profile`, check whether an existing profile (FR Core, an ANS référentiel guide...) already covers the need and inherit from it: see the `fhir-france-implementer-en` skill and its `references/catalogue-igs.md` file (not duplicated here).
 - All aliases in a single `aliases.fsh` — do not define any elsewhere.
+- Before creating a local CodeSystem or code, search the international terminologies (SNOMED CT, LOINC...) and the existing French terminologies: a local code later replaced by a standard one is a breaking change for every sender.
 - Default terminology binding: the main binding (extensible/required); reserve additional bindings for alternative ValueSets.
 - `TRE_`/`JDV_`/`ASS_` terminology naming conventions: see `fhir-france-implementer-en/references/terminologies.md` (not duplicated here).
 - **After any change to a `.fsh` file or `sushi-config.yaml`, run `sushi .` and fix all errors before committing or pushing.**
@@ -54,7 +55,16 @@ CI-SIS status ↔ configuration field mapping table, and detailed steps: `refere
 - Every PR cited in the change-log must have the version's milestone assigned.
 - If an automated audit tool for these steps is available in the environment, use it to verify the work rather than re-checking everything manually.
 
-## 5. Reference sources and documentation
+## 5. Changing an artifact that is already published
+
+Kinds of breaking change, the non-breaking alternative to look for first, and transition rules: `references/changements-incompatibles.md`.
+
+- SUSHI and the IG Publisher QA stay green on most breaking changes: check them at authoring and review time.
+- Compare against the latest published tag, not `main`. An artifact in no published version yet can still change freely.
+- Never reuse a published code with a new meaning or change its display: add a new code and retire the old one.
+- A breaking change that survives gets a dedicated **Breaking changes** entry in `change-log.md`, with an old-to-new table.
+
+## 6. Reference sources and documentation
 
 Links to FHIR IG Publisher documentation, FSH grammar, tool source code (HAPI FHIR, IG Publisher, SUSHI), and reference GitHub organizations: `references/sources-documentation.md`.
 

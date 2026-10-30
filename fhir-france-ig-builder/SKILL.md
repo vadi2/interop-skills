@@ -5,7 +5,7 @@ description: "Guide les auteurs/éditeurs d'Implementation Guide (IG) FHIR fran�
 
 # Rédiger et publier un IG FHIR français
 
-> **Dernière mise à jour du contenu : 2026-10-13**
+> **Dernière mise à jour du contenu : 2026-10-30**
 > Ce paysage évolue (nouvelles versions du repo modèle, évolutions du publisher, de SUSHI, des bonnes pratiques ANS). Vérifie systématiquement s'il existe des versions plus récentes des points ci-dessous avant de répondre avec certitude.
 
 **Doublon anglais synchronisé** : `fhir-france-ig-builder-en/SKILL.md` en est la traduction. Toute mise à jour de contenu ici doit être répercutée là-bas (et inversement).
@@ -32,6 +32,7 @@ Détails complets, conventions de nommage par type d'artefact et source faisant 
 - Commentaires FSH : `//`, jamais `#`.
 - Avant de créer un nouveau `Profile`, vérifier si un profil existant (FR Core, guide référentiel ANS...) couvre déjà le besoin et en hériter : voir le skill `fhir-france-implementer` et son fichier `references/catalogue-igs.md` (pas dupliqué ici).
 - Tous les alias dans un unique `aliases.fsh` — ne pas en définir ailleurs.
+- Avant de créer un CodeSystem ou un code local, chercher dans les terminologies internationales (SNOMED CT, LOINC...) et les terminologies françaises existantes : un code local remplacé ensuite par un code standard est un changement incompatible pour tous les émetteurs.
 - Binding de terminologie par défaut : le binding principal (extensible/required) ; réserver les bindings additionnels aux ValueSets alternatifs.
 - Conventions `TRE_`/`JDV_`/`ASS_` pour les terminologies : voir `fhir-france-implementer/references/terminologies.md` (pas dupliqué ici).
 - **Après toute modification d'un `.fsh` ou de `sushi-config.yaml`, lancer `sushi .` et corriger toutes les erreurs avant de committer ou pousser.**
@@ -54,7 +55,16 @@ Tableau de correspondance statut CI-SIS ↔ champs de configuration, et étapes 
 - Chaque PR citée dans le change-log doit avoir la milestone de la version assignée.
 - Si un outil d'audit automatisé de ces étapes est disponible dans l'environnement, l'utiliser pour vérifier le travail plutôt que de tout revérifier manuellement.
 
-## 5. Sources et documentation de référence
+## 5. Modifier un artefact déjà publié
+
+Types de changements incompatibles, alternative compatible à chercher d'abord, et règles de transition : `references/changements-incompatibles.md`.
+
+- SUSHI et la QA de l'IG Publisher restent au vert sur la plupart des changements incompatibles : les vérifier à la rédaction et en revue.
+- Comparer avec le dernier tag publié, pas avec `main`. Un artefact absent de toute version publiée peut encore évoluer librement.
+- Ne jamais réutiliser un code publié avec un nouveau sens ni modifier son display : ajouter un nouveau code et retirer l'ancien.
+- Un changement incompatible maintenu a une entrée dédiée **Changements incompatibles** dans `change-log.md`, avec une table ancien -> nouveau.
+
+## 6. Sources et documentation de référence
 
 Liens vers la documentation FHIR IG Publisher, la grammaire FSH, le code source des outils (HAPI FHIR, IG Publisher, SUSHI) et les organisations GitHub de référence : `references/sources-documentation.md`.
 
