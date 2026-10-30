@@ -68,7 +68,7 @@ Types de changements incompatibles, alternative compatible à chercher d'abord, 
 - SUSHI et la QA de l'IG Publisher restent au vert sur la plupart des changements incompatibles : les vérifier à la rédaction et en revue.
 - Comparer avec le dernier tag publié, pas avec `main`. Un artefact absent de toute version publiée peut encore évoluer librement.
 - Ne jamais réutiliser un code publié avec un nouveau sens ni modifier son display : ajouter un nouveau code et retirer l'ancien.
-- Un changement incompatible maintenu a une entrée dédiée **Changements incompatibles** dans `change-log.md`, avec une table ancien -> nouveau.
+- Un changement incompatible maintenu a une entrée dédiée "Changements incompatibles" dans `change-log.md`, avec une table ancien -> nouveau.
 
 ## 6. Sources et documentation de référence
 

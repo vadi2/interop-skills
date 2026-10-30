@@ -68,7 +68,7 @@ Kinds of breaking change, the non-breaking alternative to look for first, and tr
 - SUSHI and the IG Publisher QA stay green on most breaking changes: check them at authoring and review time.
 - Compare against the latest published tag, not `main`. An artifact in no published version yet can still change freely.
 - Never reuse a published code with a new meaning or change its display: add a new code and retire the old one.
-- A breaking change that survives gets a dedicated **Breaking changes** entry in `change-log.md`, with an old-to-new table.
+- A breaking change that survives gets a dedicated "Breaking changes" entry in `change-log.md`, with an old-to-new table.
 
 ## 6. Reference sources and documentation
 

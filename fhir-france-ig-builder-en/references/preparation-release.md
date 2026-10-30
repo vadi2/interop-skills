@@ -42,7 +42,7 @@ git fetch origin main && git merge origin/main
 - Replace placeholders with the `X.Y.Z` version and the canonical URL.
 - List the PRs merged since the previous version (`gh pr list --state merged`) in the format `* Titre de la PR [#N](url_pr)`.
 - If this is the first FHIR release of this volet, add a "Versions antérieures (PDF)" section listing earlier PDF versions (check the ANS site for the relevant volet).
-- If the version changes an artifact already published in a way that breaks implementers (see `changements-incompatibles.md`), add a dedicated **Breaking changes** section saying what they must change, with an old-to-new table for codes, canonicals or identifier systems.
+- If the version changes an artifact already published in a way that breaks implementers (see `changements-incompatibles.md`), add a dedicated "Breaking changes" section saying what they must change, with an old-to-new table for codes, canonicals or identifier systems.
 - Check for any residual placeholder (`xxx`, `TODO`, `TBD`, `FIXME`, `<insert`, `placeholder`, generic issue number).
 
 ### 5. Assign the `X.Y.Z` milestone to every PR cited in the change-log
@@ -63,7 +63,7 @@ List all modified files (`git diff origin/main...HEAD --name-only`) and describe
 - [ ] No unmerged commits since `origin/main`.
 - [ ] `sushi-config.yaml` and `publication-request.json` are consistent with each other and with the mapping table.
 - [ ] `change-log.md` is up to date, no placeholder, with at least one PR listed.
-- [ ] Every breaking change since the previous version (compare with its tag) is listed under **Breaking changes**.
+- [ ] Every breaking change since the previous version (compare with its tag) is listed under "Breaking changes".
 - [ ] Every PR cited in the change-log has the `X.Y.Z` milestone assigned (`gh api .../pulls/N --jq '.milestone.title'`).
 - [ ] A release PR is open toward `main`.
 

@@ -42,7 +42,7 @@ git fetch origin main && git merge origin/main
 - Remplacer les placeholders par la version `X.Y.Z` et l'URL canonique.
 - Lister les PRs mergées depuis la version précédente (`gh pr list --state merged`) au format `* Titre de la PR [#N](url_pr)`.
 - Si c'est la première release FHIR de ce volet, ajouter une section « Versions antérieures (PDF) » listant les versions PDF antérieures (consulter le site ANS du volet concerné).
-- Si la version modifie un artefact déjà publié d'une façon qui casse les implémenteurs (voir `changements-incompatibles.md`), ajouter une section dédiée **Changements incompatibles** qui dit ce qu'ils doivent changer, avec une table ancien -> nouveau pour les codes, canonicals ou systèmes d'identifiants.
+- Si la version modifie un artefact déjà publié d'une façon qui casse les implémenteurs (voir `changements-incompatibles.md`), ajouter une section dédiée "Changements incompatibles" qui dit ce qu'ils doivent changer, avec une table ancien -> nouveau pour les codes, canonicals ou systèmes d'identifiants.
 - Vérifier l'absence de tout placeholder résiduel (`xxx`, `TODO`, `TBD`, `FIXME`, `<insérer`, `placeholder`, numéro d'issue générique).
 
 ### 5. Assigner la milestone `X.Y.Z` à toutes les PRs citées dans le change-log
@@ -63,7 +63,7 @@ Lister tous les fichiers modifiés (`git diff origin/main...HEAD --name-only`) e
 - [ ] Aucun commit non intégré depuis `origin/main`.
 - [ ] `sushi-config.yaml` et `publication-request.json` cohérents entre eux et avec le tableau de correspondance.
 - [ ] `change-log.md` à jour, sans placeholder, avec au moins une PR listée.
-- [ ] Chaque changement incompatible depuis la version précédente (comparer avec son tag) figure sous **Changements incompatibles**.
+- [ ] Chaque changement incompatible depuis la version précédente (comparer avec son tag) figure sous "Changements incompatibles".
 - [ ] Chaque PR citée dans le change-log a la milestone `X.Y.Z` assignée (`gh api .../pulls/N --jq '.milestone.title'`).
 - [ ] Une PR de release est ouverte vers `main`.
 
